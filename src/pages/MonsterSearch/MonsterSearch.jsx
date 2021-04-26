@@ -4,8 +4,8 @@ import MonsterInput from "../../components/MonsterInput/MonsterInput"
 
 export default function MonsterSearch(props){
 
-    const [monsterName, setMonsterName] = useState("");
-    //const [monsterData, setMonsterData] = useState("");
+    const [monsterName, setMonsterName] = useState("aboleth");
+    const [monsterData, setMonsterData] = useState("");
 
     const handleSubmit = (name) => {
         console.log("App monsterName", name)
@@ -20,7 +20,7 @@ export default function MonsterSearch(props){
             .then((res) => res.json())
             .then((data) => {
               console.log(data)
-              //setMonsterData(data)
+              setMonsterData(data)
             })
         }
         makeApiCall();
@@ -30,6 +30,7 @@ export default function MonsterSearch(props){
         <>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
+        <div>{monsterData.name}</div>
         </>
     )
 }
