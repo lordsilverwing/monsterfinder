@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
+import MonsterDetails from "../../components/MonsterDetails/MonsterDetails"
 
 
 export default function MonsterSearch(props){
 
-    const [monsterName, setMonsterName] = useState("aboleth");
+    const [monsterName, setMonsterName] = useState("");
     const [monsterData, setMonsterData] = useState("");
 
-    const handleSubmit = (name) => {
-        console.log("App monsterName", name)
-        setMonsterName(name)
+    const handleSubmit = (name) => {    
+        let index = name.toLowerCase()
+        console.log("App monsterName", index)
+        setMonsterName(index)
       }
     
     useEffect(() => {
@@ -30,7 +32,10 @@ export default function MonsterSearch(props){
         <>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
-        <div>{monsterData.name}</div>
+        {monsterName 
+            ?<MonsterDetails monster={monsterData} />
+            :<div>Monster Appears Here</div>
+        }
         </>
     )
 }
