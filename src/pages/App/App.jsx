@@ -4,9 +4,12 @@ import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService'
+import MonsterSearch from '../MonsterSearch/MonsterSearch'
 
 
 function App() {
+
+
 
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
@@ -20,6 +23,7 @@ function App() {
     userService.logout();
     setUser({user: null})
   }
+
 
   return (
     <div className="App">
