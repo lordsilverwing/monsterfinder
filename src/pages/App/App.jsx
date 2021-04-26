@@ -38,7 +38,7 @@ function App() {
             <> 
              <Switch>
                 <Route exact path="/">
-                    Home PAGE COMPONENT WOULD GO HEREE
+                    <MonsterSearch />
                 </Route>
             </Switch>
             </>

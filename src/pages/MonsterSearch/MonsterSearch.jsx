@@ -28,7 +28,7 @@ export default function MonsterSearch(props){
 
     return(
         <>
-        <div>Best Movie App Ever</div>
+        <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
         </>
     )
