@@ -14,7 +14,7 @@ export default function MonsterSearch(props){
     
     useEffect(() => {
         let dungeonsAndDragons5Url = `https://www.dnd5eapi.co/api/monsters/${monsterName}`
-    
+        console.log(monsterName, "useEffect")
         const makeApiCall = () => {
           fetch(dungeonsAndDragons5Url)
             .then((res) => res.json())

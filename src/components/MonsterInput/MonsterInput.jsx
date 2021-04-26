@@ -5,8 +5,8 @@ export default function MonsterInput(props){
     const [monsterName, setMonsterName] = useState('')
 
     const handleSubmit = e => {
-        e.prevenDefault();
-        props.handleSbumit(monsterName)
+        e.preventDefault();
+        props.handleSubmit(monsterName)
         setMonsterName('')
     };
 
