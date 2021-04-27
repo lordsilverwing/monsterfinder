@@ -39,10 +39,10 @@ function App() {
             <> 
              <Switch>
                <Route path="/:monsterIndex">
-                 <MonsterProfile />
+                 <MonsterProfile handleLogout={handleLogout}/>
                </Route>
                 <Route exact path="/">
-                    <MonsterSearch />
+                    <MonsterSearch handleLogout={handleLogout}/>
                 </Route>
             </Switch>
             </>

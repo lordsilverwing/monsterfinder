@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import MonsterInput from "../../components/MonsterInput/MonsterInput"
 import {Redirect} from "react-router-dom"
+import Header from "../../components/Header/Header"
+import MonsterInput from "../../components/MonsterInput/MonsterInput"
 
-
-export default function MonsterSearch(props){
+export default function MonsterSearch({handleLogout}){
 
     const [monsterName, setMonsterName] = useState("");
     const [monsterData, setMonsterData] = useState("");
 
     const handleSubmit = (name) => {    
         let index = name.toLowerCase()
-        console.log("App monsterName", index)
         setMonsterName(index)
       }
     
     useEffect(() => {
         let dungeonsAndDragons5Url = `https://www.dnd5eapi.co/api/monsters/${monsterName}`
-        console.log(monsterName, "useEffect")
         const makeApiCall = () => {
           fetch(dungeonsAndDragons5Url)
             .then((res) => res.json())
@@ -31,6 +29,7 @@ export default function MonsterSearch(props){
       if (monsterData.index) return <Redirect to={`/${monsterData.index}`}/>
     return(
         <>
+        <Header handleLogout={handleLogout}/>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
         </>
