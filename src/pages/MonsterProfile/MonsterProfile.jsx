@@ -10,6 +10,7 @@ export default function MonsterProfile({user, handleLogout}){
 
     const [monsterData, setMonsterData] = useState("");
     const [loaded, setLoaded] = useState(false)
+
     const {monsterIndex} = useParams();
     console.log(monsterIndex)
 

@@ -3,11 +3,18 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
+const favoriteMonstersSchema = mongoose.Schema({
+  username: String,
+  monsterName: String,
+  monsterIndex: String,
+})
+
 const userSchema = new mongoose.Schema({
   username: {type: String, required: true, lowercase: true, unique: true},
   email: {type: String, required: true, lowercase: true, unique: true},
   password: String,
-  photoUrl: String  // string from aws!
+  photoUrl: String,  // string from aws!
+  favoriteMonsters: [favoriteMonstersSchema]
 }, {
   timestamps: true
 });
