@@ -1,5 +1,6 @@
 import React from 'react'
 import SpecialAbility from '../SpecialAbility/SpecialAbility'
+import MonsterActions from '../MonsterActions/MonsterActions'
 
 
 
@@ -15,8 +16,8 @@ export default function MonsterDetails({monster = {
     let resist = ["Resistances: "]
     let immune = ["Immune: "]
     for (const prop in monster.speed){
-        speed.push(prop + " " + monster.speed[prop] + " ")
-    }
+         speed.push(prop + " " + monster.speed[prop] + " ")
+     }
     for (const prop in monster.senses){
         senses.push(prop + " " + monster.senses[prop] + " ")
     }
@@ -45,10 +46,10 @@ export default function MonsterDetails({monster = {
             <div></div>
             <div>{speed}
             <div>
-                {/* {Object.keys(monster.speed).map((value, index) => {
+                 {/* {Object.keys(monster.speed).map((value, index) => {
                     console.log(monster.speed[value])
                     return <span key={index}>{value, monster.speed[value]}</span>
-                })} */}
+                })}  */}
             </div>
             </div>
             <div>{senses}</div>
@@ -66,11 +67,20 @@ export default function MonsterDetails({monster = {
             <div>{vuln}</div>
             <div>{resist}</div>
             <div>{immune}</div>
+            <h3>Special Abilities</h3>
            { typeof(monster.special_abilities) === typeof([]) &&
+           
             <ul>
                 {monster.special_abilities.map((value, index) => <li key={`spa-${index}`}><SpecialAbility {...value} /></li>)}
             </ul>
             }
+            <h3>Actions</h3>
+            { typeof(monster.actions) === typeof([]) &&
+            <ul>
+                {monster.actions.map((value, index) => <li key={`spa-${index}`}><MonsterActions {...value} /></li>)}
+            </ul>
+            }
+            
             <div>Experience Points: {monster.xp}</div>
             
         </>

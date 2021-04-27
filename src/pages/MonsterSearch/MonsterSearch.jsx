@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
-import MonsterDetails from "../../components/MonsterDetails/MonsterDetails"
+import {Redirect} from "react-router-dom"
 
 
 export default function MonsterSearch(props){
@@ -28,14 +28,11 @@ export default function MonsterSearch(props){
         makeApiCall();
       }, [monsterName]);
 
+      if (monsterData.index) return <Redirect to={`/${monsterData.index}`}/>
     return(
         <>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
-        {monsterName 
-            ?<MonsterDetails monster={monsterData} />
-            :<div>Monster Appears Here</div>
-        }
         </>
     )
 }

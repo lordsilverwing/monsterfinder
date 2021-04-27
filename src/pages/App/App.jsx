@@ -5,6 +5,7 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService'
 import MonsterSearch from '../MonsterSearch/MonsterSearch'
+import MonsterProfile from '../MonsterProfile/MonsterProfile'
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
           {userService.getUser() ? 
             <> 
              <Switch>
+               <Route path="/:monsterIndex">
+                 <MonsterProfile />
+               </Route>
                 <Route exact path="/">
                     <MonsterSearch />
                 </Route>
