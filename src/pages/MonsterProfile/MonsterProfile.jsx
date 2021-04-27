@@ -21,7 +21,6 @@ export default function MonsterProfile({user, handleLogout}){
           fetch(dungeonsAndDragons5Url)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data)
               setLoaded(true)
               setMonsterData(data)
             })

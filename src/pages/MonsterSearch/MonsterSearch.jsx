@@ -2,15 +2,22 @@ import React, { useEffect, useState } from "react";
 import {Redirect} from "react-router-dom"
 import Header from "../../components/Header/Header"
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
+import RandomMonster from "../../components/RandomMonster/RandomMonster"
 
 export default function MonsterSearch({handleLogout}){
 
     const [monsterName, setMonsterName] = useState("");
     const [monsterData, setMonsterData] = useState("");
+    const [challengeRating, setChallengeRating] = useState("");
 
     const handleSubmit = (name) => {    
         let index = name.toLowerCase()
         setMonsterName(index)
+      }
+
+      const handleRandom = (cr) => {
+        console.log(challengeRating)    
+        setChallengeRating(cr)
       }
     
     useEffect(() => {
@@ -19,7 +26,6 @@ export default function MonsterSearch({handleLogout}){
           fetch(dungeonsAndDragons5Url)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data)
               setMonsterData(data)
             })
         }
@@ -32,6 +38,8 @@ export default function MonsterSearch({handleLogout}){
         <Header handleLogout={handleLogout}/>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
+        <RandomMonster handleRandom={handleRandom} />
+        
         </>
     )
 }

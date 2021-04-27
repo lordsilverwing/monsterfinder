@@ -2,10 +2,6 @@ import React from 'react'
 import SpecialAbility from '../SpecialAbility/SpecialAbility'
 import MonsterActions from '../MonsterActions/MonsterActions'
 
-
-
-
-
 export default function MonsterDetails({monster = {
     speed: {}
 }}){
@@ -67,7 +63,6 @@ export default function MonsterDetails({monster = {
             <div>{vuln}</div>
             <div>{resist}</div>
             <div>{immune}</div>
-            <h3>Special Abilities</h3>
            { typeof(monster.special_abilities) === typeof([]) &&
            
             <ul>
