@@ -6,6 +6,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService'
 import MonsterSearch from '../MonsterSearch/MonsterSearch'
 import MonsterProfile from '../MonsterProfile/MonsterProfile'
+import RandomMonsterPage from '../RandomMonsterPage/RandomMonsterPage';
+import Header from '../../components/Header/Header'
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header handleLogout={handleLogout}/>
       <Switch>
           <Route exact path="/login">
              <LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>
@@ -38,7 +41,10 @@ function App() {
           {userService.getUser() ? 
             <> 
              <Switch>
-               <Route path="/:monsterIndex">
+              <Route path="/random" component={RandomMonsterPage}>
+                <RandomMonsterPage />
+              </Route>
+              <Route path="/:monsterIndex">
                  <MonsterProfile handleLogout={handleLogout}/>
                </Route>
                 <Route exact path="/">
