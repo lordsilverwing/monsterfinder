@@ -12,7 +12,6 @@ export default function RandomMonsterPage(props){
     const location = useLocation();
     const parsed = queryString.parse(location.search)
     const monsterCr = parsed.challengeRating
-    console.log(parsed)
 
     useEffect(() => {
         if (loaded) return;
@@ -31,14 +30,18 @@ export default function RandomMonsterPage(props){
     if(monster && monster.results && monster.results.length){
     for (let i=0; i < 4 && monster.results.length; i++){
         let results = monster.results
-        randomMonster.push(results[Math.floor(Math.random() * results.length)])
+        let random = Math.floor(Math.random() * results.length)
+        let monsterSplice = results.splice(random, 1)
+        randomMonster.push(monsterSplice[0])
+        
         }
+        
        return (<>
             {randomMonster.map((value, index) => <RandomMonsterCard monster={value} key={`RandomMonster-${index}`}/>)}
        </>)
     }
-
        return(
         <div>Loading</div>
        )
+       
 }
