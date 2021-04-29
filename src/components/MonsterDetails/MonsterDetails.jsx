@@ -1,10 +1,11 @@
 import React from 'react'
+import { Card, Icon, Image, Feed } from 'semantic-ui-react'
 import SpecialAbility from '../SpecialAbility/SpecialAbility'
 import MonsterActions from '../MonsterActions/MonsterActions'
 
 export default function MonsterDetails({monster = {
     speed: {}
-}}){
+}, user, addFavorite, removeFavorite}){
 
     let speed = ["Speed: "]
     let senses = ["Senses: "]
@@ -28,7 +29,11 @@ export default function MonsterDetails({monster = {
     for (const prop in monster.damage_resistances){
         resist.push(monster.damage_resistances[prop] + " ")
     }
+
+    const favoriteIndexNumber = user.favoriteMonsters.findIndex(favoriteMonsters => favoriteMonsters.monsterName === monster.name);
  
+    const clickHandler = favoriteIndexNumber > - 1 ? () => removeFavorite(user.favoriteMonsters[favoriteIndexNumber]._id) : () => addFavorite(user._id, {name:monster.name, index: monster.index});
+    const favoriteColor = favoriteIndexNumber > -1 ? 'gold' : 'grey';
     //let speed = Object.keys(monster.speed).map((value) => console.log([value]))
 
 
@@ -36,6 +41,7 @@ export default function MonsterDetails({monster = {
     
     return(
         <>
+         <Icon name={'star'} size='large' onClick={clickHandler} color={favoriteColor} />
             <h2>{monster.name}</h2>
             <div>{monster.size} <span>{monster.alignment}</span></div>
             <div>{monster.type} <span>{monster.subtype}</span></div>

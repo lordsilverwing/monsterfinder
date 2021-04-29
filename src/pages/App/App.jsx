@@ -45,7 +45,7 @@ function App() {
                 <RandomMonsterPage />
               </Route>
               <Route path="/:monsterIndex">
-                 <MonsterProfile />
+                 <MonsterProfile user={user}/>
                </Route>
                 <Route exact path="/">
                     <MonsterSearch />
