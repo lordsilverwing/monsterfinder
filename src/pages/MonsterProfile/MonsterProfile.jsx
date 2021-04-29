@@ -5,7 +5,7 @@ import MonsterDetails from "../../components/MonsterDetails/MonsterDetails"
 
 
 
-export default function MonsterProfile({user, handleLogout}){
+export default function MonsterProfile({user}){
 
     const [monsterData, setMonsterData] = useState("");
     const [loaded, setLoaded] = useState(false)
