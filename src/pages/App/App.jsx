@@ -45,10 +45,10 @@ function App() {
                 <RandomMonsterPage />
               </Route>
               <Route path="/:monsterIndex">
-                 <MonsterProfile handleLogout={handleLogout}/>
+                 <MonsterProfile />
                </Route>
                 <Route exact path="/">
-                    <MonsterSearch handleLogout={handleLogout}/>
+                    <MonsterSearch />
                 </Route>
             </Switch>
             </>

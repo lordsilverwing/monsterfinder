@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import RandomMonsterCard from "../../components/RandomMonsterCard/RandomMonsterCard"
-import {useParams, useLocation} from "react-router-dom"
+import {useLocation} from "react-router-dom"
 import queryString from "query-string"
 
 
 export default function RandomMonsterPage(props){
     const [loaded, setLoaded] = useState(false)
     const [monster, setMonster] = useState("");
+    let randomMonster = []
 
     const location = useLocation();
     const parsed = queryString.parse(location.search)
@@ -22,12 +23,22 @@ export default function RandomMonsterPage(props){
             .then((data) => {
               setLoaded(true)
               setMonster(data)
+              ;
             })
          }
         makeApiCall();
        }, [monsterCr]);
+    if(monster && monster.results && monster.results.length){
+    for (let i=0; i < 4 && monster.results.length; i++){
+        let results = monster.results
+        randomMonster.push(results[Math.floor(Math.random() * results.length)])
+        }
+       return (<>
+            {randomMonster.map((value, index) => <RandomMonsterCard monster={value} key={`RandomMonster-${index}`}/>)}
+       </>)
+    }
 
        return(
-        <RandomMonsterCard />
+        <div>Loading</div>
        )
 }

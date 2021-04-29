@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {Redirect} from "react-router-dom"
-import Header from "../../components/Header/Header"
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
 import RandomMonster from "../../components/RandomMonster/RandomMonster"
 
@@ -35,7 +34,6 @@ export default function MonsterSearch({handleLogout}){
       if (monsterData.index) return <Redirect to={`/${monsterData.index}`}/>
     return(
         <>
-        <Header handleLogout={handleLogout}/>
         <div>Find a Monster</div>
         <MonsterInput handleSubmit={handleSubmit} />
         <RandomMonster handleRandom={handleRandom} />

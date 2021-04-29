@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom"
-import Header from "../../components/Header/Header"
 import MonsterDetails from "../../components/MonsterDetails/MonsterDetails"
 
 
@@ -31,7 +30,6 @@ export default function MonsterProfile({user, handleLogout}){
 
       return(
         <> 
-            <Header handleLogout={handleLogout}/>
             {loaded && monsterData && <MonsterDetails monster={monsterData} />} 
         </>
       )
