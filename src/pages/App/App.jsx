@@ -8,10 +8,12 @@ import MonsterSearch from '../MonsterSearch/MonsterSearch'
 import MonsterProfile from '../MonsterProfile/MonsterProfile'
 import RandomMonsterPage from '../RandomMonsterPage/RandomMonsterPage';
 import Header from '../../components/Header/Header'
+import * as favoriteApi from '../../utils/favoriteService'
 
 
 function App() {
 
+  
 
 
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
@@ -27,10 +29,32 @@ function App() {
     setUser({user: null})
   }
 
+  async function addFavorite(monster){
+    try {
+      const data = await favoriteApi.create(user._id, monster)
+      console.log(data, ' response from addLike')
+      setUser(u => ({...u, favoriteMonsters:data})) 
+    } catch(err){
+      console.log(err)
+    }
+  }
+
+  async function removeFavorite(favoriteId){
+    try{  
+      const data = await favoriteApi.removeFavorite(favoriteId);
+      console.log(data, ' response from removeFavorite')
+       setUser(u => ({...u, favoriteMonsters:data})) 
+    } catch(err){
+      console.log(err)
+    }
+  }
+  const favoriteFun = {addFavorite, removeFavorite}
+
+
 
   return (
     <div className="App">
-      <Header handleLogout={handleLogout}/>
+      
       <Switch>
           <Route exact path="/login">
              <LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>
@@ -40,12 +64,13 @@ function App() {
           </Route>
           {userService.getUser() ? 
             <> 
+            <Header handleLogout={handleLogout}/>
              <Switch>
               <Route path="/random" component={RandomMonsterPage}>
                 <RandomMonsterPage />
               </Route>
               <Route path="/:monsterIndex">
-                 <MonsterProfile user={user}/>
+                 <MonsterProfile user={user} favoriteApi={favoriteFun}/>
                </Route>
                 <Route exact path="/">
                     <MonsterSearch />

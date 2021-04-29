@@ -1,11 +1,13 @@
 import tokenService from './tokenService';
 
 
+
 const BASE_URL = '/api';
 
-export function create(userID, monster){
+export async function create(userID, monster){
     console.log(monster)
-    return fetch(`${BASE_URL}/user/${userID}/favorite`, {
+    
+    const response = await fetch(`${BASE_URL}/user/${userID}/favorite`, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken(),
@@ -15,15 +17,21 @@ export function create(userID, monster){
         body: JSON.stringify({
             monster
         })
-    }).then(res => res.json())
+    })
+    const favoriteMonsters = await response.json()
+    tokenService.setFavoriteMonsters(favoriteMonsters)
+    return favoriteMonsters
 }
 
 
-export function removeFavorite(favID){
-    return fetch(`${BASE_URL}/favorite/${favID}`, {
+export async function removeFavorite(favID){
+    const response = await fetch(`${BASE_URL}/favorite/${favID}`, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()
           }
-    }).then(res => res.json())
+    })
+    const favoriteMonsters = await response.json()
+    tokenService.setFavoriteMonsters(favoriteMonsters)
+    return favoriteMonsters
 }

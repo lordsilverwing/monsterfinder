@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Card, Icon, Image, Feed } from 'semantic-ui-react'
 import SpecialAbility from '../SpecialAbility/SpecialAbility'
 import MonsterActions from '../MonsterActions/MonsterActions'
+import tokenService from '../../utils/tokenService'
 
 export default function MonsterDetails({monster = {
     speed: {}
-}, user, addFavorite, removeFavorite}){
+}, favoriteApi:{addFavorite, removeFavorite}, user}){
+    console.log(user)
+    const favoriteIndexNumber = user.favoriteMonsters.findIndex(favoriteMonsters => favoriteMonsters.monsterName === monster.name);
+    const [isFavorited, setIsFavorited] = useState(favoriteIndexNumber > - 1)
 
     let speed = ["Speed: "]
     let senses = ["Senses: "]
@@ -29,11 +33,14 @@ export default function MonsterDetails({monster = {
     for (const prop in monster.damage_resistances){
         resist.push(monster.damage_resistances[prop] + " ")
     }
+    const favMon = user.favoriteMonsters
+    console.log(favMon, favoriteIndexNumber)
 
-    const favoriteIndexNumber = user.favoriteMonsters.findIndex(favoriteMonsters => favoriteMonsters.monsterName === monster.name);
- 
-    const clickHandler = favoriteIndexNumber > - 1 ? () => removeFavorite(user.favoriteMonsters[favoriteIndexNumber]._id) : () => addFavorite(user._id, {name:monster.name, index: monster.index});
-    const favoriteColor = favoriteIndexNumber > -1 ? 'gold' : 'grey';
+
+    const clickHandler = isFavorited
+        ? () => {removeFavorite(favMon[favoriteIndexNumber]._id).then(() => setIsFavorited(false)) }
+        : () => {addFavorite({name:monster.name, index: monster.index}).then(() => setIsFavorited(true))}
+    const favoriteColor = isFavorited ? 'yellow' : 'grey';
     //let speed = Object.keys(monster.speed).map((value) => console.log([value]))
 
 

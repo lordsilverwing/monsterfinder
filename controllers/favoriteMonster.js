@@ -13,7 +13,7 @@ async function create(req, res){
         user.favoriteMonsters.push({monsterName: req.body.monster.name, monsterIndex: req.body.monster.index}); //mutating a document
         await user.save()// save it
         console.log("added")
-        res.status(201).json({data: 'fav added'})
+        res.status(201).json(user.favoriteMonsters)
     } catch(err){
         console.log("error", err)
         res.json({data: err})
@@ -24,11 +24,11 @@ async function create(req, res){
 async function deleteFavorite(req, res){
     try {
         
-        const user = await User.findOne({'favoriteMonster._id': req.params.id, 'favoriteMonster.monsterName': req.monster.name});
+        const user = await User.findOne({'favoriteMonsters._id': req.params.id});
         user.favoriteMonsters.remove(req.params.id) // mutating a document
         // req.params.id is the like id 
-        await post.save() // after you mutate a document you must save
-        res.json({data: 'fav removed'})
+        await user.save() // after you mutate a document you must save
+        res.json(user.favoriteMonsters)
     } catch(err){
         res.json({error: err})
     }

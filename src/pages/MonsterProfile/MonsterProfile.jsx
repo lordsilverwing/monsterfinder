@@ -1,36 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom"
 import MonsterDetails from "../../components/MonsterDetails/MonsterDetails"
-import * as favoriteApi from '../../utils/favoriteService';
 
 
 
-export default function MonsterProfile({user}){
+export default function MonsterProfile({user, favoriteApi}){
+
 
     const [monsterData, setMonsterData] = useState("");
     const [loaded, setLoaded] = useState(false)
 
     const {monsterIndex} = useParams();
 
-    async function addFavorite(user, monster){
-        try {
-          const data = await favoriteApi.create(user, monster)
-          console.log(data, ' response from addLike')
-           // get the updated posts
-        } catch(err){
-          console.log(err)
-        }
-      }
-  
-      async function removeFavorite(favoriteId){
-        try{  
-          const data = await favoriteApi.removeFavorite(favoriteId);
-          console.log(data, ' response from removeFavorite')
-            
-        } catch(err){
-          console.log(err)
-        }
-      }
+
 
     
     useEffect(() => {
@@ -51,8 +33,7 @@ export default function MonsterProfile({user}){
         <> 
             {loaded && monsterData && <MonsterDetails 
             monster={monsterData} 
-            addFavorite={addFavorite} 
-            removeFavorite={removeFavorite}
+            favoriteApi={favoriteApi}
             user={user}
             />} 
         </>

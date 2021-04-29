@@ -42,7 +42,7 @@ function login(creds) {
     if (res.ok) return res.json();
     throw new Error('Bad Credentials!');
   })
-  .then(({token}) => tokenService.setToken(token));
+  .then((user) => tokenService.setToken(user));
 }
 
 

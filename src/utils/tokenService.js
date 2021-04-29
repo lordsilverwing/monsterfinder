@@ -1,9 +1,12 @@
-function setToken(token) {
-    if (token) {
+function setToken(user) {
+    if (user.token) {
       // localStorage is given to us by the browser
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', user.token);
     } else {
       localStorage.removeItem('token');
+    }
+    if (user && user.favoriteMonsters) {
+      setFavoriteMonsters(user.favoriteMonsters)
     }
   }
   
@@ -24,16 +27,26 @@ function setToken(token) {
   
   function getUserFromToken() {
     const token = getToken();
-    return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+    const user = token ? JSON.parse(atob(token.split('.')[1])).user : null;
+    if(user){
+    user.favoriteMonsters = JSON.parse(localStorage.getItem('favoriteMonsters') || '[]');
+    }
+    return user;
   }
   
   function removeToken() {
     localStorage.removeItem('token');
+    setFavoriteMonsters([])
+  }
+
+  function setFavoriteMonsters(favoriteMonsters){
+    localStorage.setItem('favoriteMonsters', JSON.stringify(favoriteMonsters))
   }
   
   export default {
     setToken,
     getToken,
     removeToken,
-    getUserFromToken
+    getUserFromToken,
+    setFavoriteMonsters
   };
