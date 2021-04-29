@@ -8,6 +8,7 @@ import MonsterSearch from '../MonsterSearch/MonsterSearch'
 import MonsterProfile from '../MonsterProfile/MonsterProfile'
 import RandomMonsterPage from '../RandomMonsterPage/RandomMonsterPage';
 import Header from '../../components/Header/Header'
+import Profile from '../Profile/Profile'
 import * as favoriteApi from '../../utils/favoriteService'
 
 
@@ -66,6 +67,9 @@ function App() {
             <> 
             <Header handleLogout={handleLogout}/>
              <Switch>
+               <Route exact path ="/profile">
+                  <Profile user={user} favoriteApi={favoriteFun}/>
+                </Route>
               <Route path="/random" component={RandomMonsterPage}>
                 <RandomMonsterPage />
               </Route>
@@ -75,6 +79,7 @@ function App() {
                 <Route exact path="/">
                     <MonsterSearch />
                 </Route>
+                
             </Switch>
             </>
             :
