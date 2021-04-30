@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import { Card, Icon, Image, Feed } from 'semantic-ui-react'
+import { Card, Icon} from 'semantic-ui-react'
 import SpecialAbility from '../SpecialAbility/SpecialAbility'
 import MonsterActions from '../MonsterActions/MonsterActions'
-import tokenService from '../../utils/tokenService'
+import Proficiencies from '../Proficiencies/Proficiencies'
 
 export default function MonsterDetails({monster = {
     speed: {}
@@ -42,6 +42,7 @@ export default function MonsterDetails({monster = {
         : () => {addFavorite({name:monster.name, index: monster.index}).then(() => setIsFavorited(true))}
     const favoriteColor = isFavorited ? 'yellow' : 'grey';
     //let speed = Object.keys(monster.speed).map((value) => console.log([value]))
+    console.log(monster.proficiencies[0])
 
 
 
@@ -53,14 +54,7 @@ export default function MonsterDetails({monster = {
             <div>{monster.size} <span>{monster.alignment}</span></div>
             <div>{monster.type} <span>{monster.subtype}</span></div>
             <div></div>
-            <div>{speed}
-            <div>
-                 {/* {Object.keys(monster.speed).map((value, index) => {
-                    console.log(monster.speed[value])
-                    return <span key={index}>{value, monster.speed[value]}</span>
-                })}  */}
-            </div>
-            </div>
+            <div>{speed}</div>
             <div>{senses}</div>
             <div>Armor Class: {monster.armor_class}</div><div>Default HP:{monster.hit_points} <span>HD:{monster.hit_dice}</span></div>
             <div>CR: {monster.challenge_rating}</div>
@@ -71,6 +65,12 @@ export default function MonsterDetails({monster = {
             <div>Intelligence:{monster.intelligence}</div>
             <div>Wisdom:{monster.wisdom}</div>
             <div>Charisma:{monster.charisma}</div>
+            { typeof(monster.proficiencies) === typeof([]) &&
+           
+           <ul>
+               {monster.proficiencies.map((value, index) => <li key={`spa-${index}`}><Proficiencies {...value} /></li>)}
+           </ul>
+           }
 
             <div>{monster.languages}</div>
             <div>{vuln}</div>
