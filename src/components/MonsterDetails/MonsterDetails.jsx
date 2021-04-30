@@ -59,12 +59,14 @@ export default function MonsterDetails({monster = {
             <div>Armor Class: {monster.armor_class}</div><div>Default HP:{monster.hit_points} <span>HD:{monster.hit_dice}</span></div>
             <div>CR: {monster.challenge_rating}</div>
             <h3>Attributes</h3>
-            <div>Strength:{monster.strength}</div>
-            <div>Dexterity:{monster.dexterity}</div>
-            <div>Constitution:{monster.constitution}</div>
-            <div>Intelligence:{monster.intelligence}</div>
-            <div>Wisdom:{monster.wisdom}</div>
-            <div>Charisma:{monster.charisma}</div>
+            <dl>
+            <dt>Strength</dt><dd>{monster.strength}</dd>
+            <dt>Dexterity</dt><dd>{monster.dexterity}</dd>
+            <dt>Constitution</dt><dd>{monster.constitution}</dd>
+            <dt>Intelligence</dt><dd>{monster.intelligence}</dd>
+            <dt>Wisdom</dt><dd>{monster.wisdom}</dd>
+            <dt>Charisma</dt><dd>{monster.charisma}</dd> 
+            </dl>
             { typeof(monster.proficiencies) === typeof([]) &&
            
            <ul>
@@ -78,15 +80,15 @@ export default function MonsterDetails({monster = {
             <div>{immune}</div>
            { typeof(monster.special_abilities) === typeof([]) &&
            
-            <ul>
-                {monster.special_abilities.map((value, index) => <li key={`spa-${index}`}><SpecialAbility {...value} /></li>)}
-            </ul>
+            <dl>
+                {monster.special_abilities.map((value, index) => <div key={`spa-${index}`}><SpecialAbility {...value} /></div>)}
+            </dl>
             }
             <h3>Actions</h3>
             { typeof(monster.actions) === typeof([]) &&
-            <ul>
-                {monster.actions.map((value, index) => <li key={`spa-${index}`}><MonsterActions {...value} /></li>)}
-            </ul>
+            <dl>
+                {monster.actions.map((value, index) => <div key={`spa-${index}`}><MonsterActions {...value} /></div>)}
+            </dl>
             }
             
             <div>Experience Points: {monster.xp}</div>

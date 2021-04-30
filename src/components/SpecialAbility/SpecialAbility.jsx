@@ -3,6 +3,9 @@ import React from 'react'
 
 export default function SpecialAbility(ability){
     return(
-        <div><strong>{ability.name}</strong> {ability.desc}</div>
+        <>
+        <dt><strong>{ability.name}</strong></dt> 
+        <dd>{ability.desc}</dd>
+        </>
     )
 }
