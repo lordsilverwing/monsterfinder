@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Form, ListGroup } from "react-bootstrap";
-import LoadingIndicator from "./LoadingIndicator";
+import './Typeahead.css'
+import { Form, List } from "semantic-ui-react";
+
 
 const DEFAULT_SUGGESTION_INDEX = -1;
 let timeout;
@@ -45,10 +46,11 @@ const Typeahead = ({
 	const [isFetching, setIsFetching] = useState(false);
 	const [suggestionIndex, setSuggestionIndex] = useState(DEFAULT_SUGGESTION_INDEX);
 	const [suggestions, setSuggestions] = useState([]);
-	const [suggestionsVisible, setSuggestionVisibility] = useState(false);
+	const [suggestionsVisible, setSuggestionVisibility] = useState(true);
 
 	const retrieveSuggestions = async (input) => {
 		const response = await getSuggestions(input)
+        console.log(response)
 		setSuggestions(response);
 		setIsFetching(false);
 	};
@@ -153,14 +155,14 @@ const Typeahead = ({
 			const textMatches = ({ text = "" }) => (text.toLowerCase().match(regex) || []).length;
 			const highlight = ({ text, id }) => ({ html: text.replace(regex, "<strong>$&</strong>"), text, id });
 
-			return suggestions.filter(textMatches).map(highlight).slice(0, maxSuggestions);
+			return suggestions.filter(textMatches).slice(0, maxSuggestions);
 		}
 		return suggestions.slice(0, maxSuggestions);
 	}
 	
 	return (
 		<div className="typeahead">
-			<Form.Control 
+			<Form.Input
 				placeholder={placeholder}
 				type="text" 
 				value={inputValue || value} 
@@ -168,23 +170,25 @@ const Typeahead = ({
 				onFocus={handleInputFocus}
 				onBlur={() => setSuggestionVisibility(false)}
 				onKeyDown={handleKeyDown}
-			/>				
-			{ !!suggestionsVisible && (!!isFetching || (!!suggestions && !!suggestions.length)) && 
-				<ListGroup>
-					{ !!isFetching && <ListGroup.Item className="text-center"><LoadingIndicator /></ListGroup.Item> }
+			/>			
+			{ //!!suggestionsVisible && (!!isFetching || (!!suggestions && !!suggestions.length)) && 
+				<List>
+					{ !!isFetching && <List.Item className="text-center">Loading </List.Item> }
 					{ filterSuggestions(suggestions, inputValue).map((s, i) => {
 							const className = i === suggestionIndex ? "active" : "";
-							return (<ListGroup.Item 
+							return (<List.Item 
 								key={`suggestion-${i}`} 
 								action 
 								onMouseDown={() => handleSuggestionClick(s.id, s.text)}
 								className={className}
-								dangerouslySetInnerHTML={{__html: (s.html || s.text)}}
+								//dangerouslySetInnerHTML={{__html: (s.html || s.text)}}
 							>
-							</ListGroup.Item>) 
+                                {s.text}
+                            </List.Item>
+							) 
 						})
 					}
-				</ListGroup>
+				</List>
 			}		
 		</div>
 	)

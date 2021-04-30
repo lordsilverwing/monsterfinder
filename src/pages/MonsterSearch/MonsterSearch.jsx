@@ -3,16 +3,17 @@ import {Redirect} from "react-router-dom"
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
 import RandomMonster from "../../components/RandomMonster/RandomMonster"
 
-export default function MonsterSearch({handleLogout}){
+export default function MonsterSearch(){
 
-    const [monsterName, setMonsterName] = useState("");
+
     const [monsterData, setMonsterData] = useState("");
     const [challengeRating, setChallengeRating] = useState("");
+    console.log(monsterData)
 
-    const handleSubmit = (name) => {    
-        let index = name.toLowerCase()
-        setMonsterName(index)
-      }
+    const onChange = (index) => {
+      setMonsterData({index})
+    }
+
 
       const handleRandom = (cr) => {
         console.log(challengeRating)    
@@ -20,7 +21,7 @@ export default function MonsterSearch({handleLogout}){
       }
     
     useEffect(() => {
-        let dungeonsAndDragons5Url = `https://www.dnd5eapi.co/api/monsters/${monsterName}`
+        let dungeonsAndDragons5Url = `https://www.dnd5eapi.co/api/monsters/`
         const makeApiCall = () => {
           fetch(dungeonsAndDragons5Url)
             .then((res) => res.json())
@@ -29,13 +30,13 @@ export default function MonsterSearch({handleLogout}){
             })
         }
         makeApiCall();
-      }, [monsterName]);
+      }, []);
 
       if (monsterData.index) return <Redirect to={`/${monsterData.index}`}/>
     return(
         <>
         <div>Find a Monster</div>
-        <MonsterInput handleSubmit={handleSubmit} />
+        <MonsterInput monsterData={monsterData.results} onChange={onChange}/>
         <RandomMonster handleRandom={handleRandom} />
         
         </>

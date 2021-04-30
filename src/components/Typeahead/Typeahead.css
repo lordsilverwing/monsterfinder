@@ -1,0 +1,19 @@
+.typeahead {
+    position: relative;
+  }
+  
+.typeahead .list {
+    background-color: white;
+    position: absolute;
+    z-index: 10;
+    box-sizing: border-box;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    top: calc(100% - 1em);
+    width: 100%;
+  }
+
+  .typeahead .list .item:hover,
+  .typeahead .list .item.active {
+      background-color: red;
+  }
