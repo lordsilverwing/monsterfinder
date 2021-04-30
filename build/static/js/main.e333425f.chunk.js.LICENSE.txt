@@ -1,0 +1,1 @@
+//!!suggestionsVisible && (!!isFetching || (!!suggestions && !!suggestions.length)) && 
