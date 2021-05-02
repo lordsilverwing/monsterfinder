@@ -7,9 +7,10 @@ export default function RandomMonster(props){
     return (
         <>
         <form method="GET" action="/random">
-            <label htmlFor="challengeRating">Monster CR:</label>
+            <label htmlFor="challengeRating">Input Monster CR </label>
+            <br></br>
             <ChallengeRating />
-            <input type="submit" value="Find Monster"/>
+            <input type="submit" value="Find Monsters"/>
         </form>
         </>
     )

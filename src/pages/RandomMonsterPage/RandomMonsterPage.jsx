@@ -26,7 +26,7 @@ export default function RandomMonsterPage(props){
             })
          }
         makeApiCall();
-       }, [monsterCr]);
+       }, [monsterCr, loaded]);
     if(monster && monster.results && monster.results.length){
     for (let i=0; i < 4 && monster.results.length; i++){
         let results = monster.results

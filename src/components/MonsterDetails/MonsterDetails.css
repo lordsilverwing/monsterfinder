@@ -1,0 +1,20 @@
+.ui.card{
+    width:85%;
+    text-align: center;
+}
+
+#star{
+    text-align:right;
+}
+
+h2, h3, h4 {
+    margin:0%
+}
+
+dd{
+    margin-inline-start: 2%;
+}
+
+.ui.horizontal.divider{
+    font-size: large;
+}

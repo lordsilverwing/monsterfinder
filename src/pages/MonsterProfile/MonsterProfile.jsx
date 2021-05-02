@@ -27,7 +27,7 @@ export default function MonsterProfile({user, favoriteApi}){
             })
          }
         makeApiCall();
-       }, [monsterIndex]);
+       }, [monsterIndex, loaded]);
 
       return(
         <> 

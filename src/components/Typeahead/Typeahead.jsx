@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import './Typeahead.css'
 import { Form, List } from "semantic-ui-react";
-
+import './Typeahead.css'
 
 const DEFAULT_SUGGESTION_INDEX = -1;
 let timeout;
@@ -122,7 +121,8 @@ const Typeahead = ({
 				case 13: // Enter
 					evt.preventDefault(); 
 					evt.stopPropagation();
-					const {id, text} = suggestions[Math.max(suggestionIndex, 0)];
+                    const s = filterSuggestions(suggestions, inputValue)
+					const {id, text} = s[Math.max(suggestionIndex, 0)];
 					handleSuggestionClick(id, text);
 					break;
 				case 27: // escape
@@ -153,8 +153,6 @@ const Typeahead = ({
 			const regex = new RegExp(val, "i");
 
 			const textMatches = ({ text = "" }) => (text.toLowerCase().match(regex) || []).length;
-			const highlight = ({ text, id }) => ({ html: text.replace(regex, "<strong>$&</strong>"), text, id });
-
 			return suggestions.filter(textMatches).slice(0, maxSuggestions);
 		}
 		return suggestions.slice(0, maxSuggestions);
@@ -171,14 +169,13 @@ const Typeahead = ({
 				onBlur={() => setSuggestionVisibility(false)}
 				onKeyDown={handleKeyDown}
 			/>			
-			{ //!!suggestionsVisible && (!!isFetching || (!!suggestions && !!suggestions.length)) && 
+			{ !!suggestionsVisible && (!!isFetching || (!!suggestions && !!suggestions.length)) && 
 				<List>
 					{ !!isFetching && <List.Item className="text-center">Loading </List.Item> }
 					{ filterSuggestions(suggestions, inputValue).map((s, i) => {
 							const className = i === suggestionIndex ? "active" : "";
 							return (<List.Item 
 								key={`suggestion-${i}`} 
-								action 
 								onMouseDown={() => handleSuggestionClick(s.id, s.text)}
 								className={className}
 								//dangerouslySetInnerHTML={{__html: (s.html || s.text)}}

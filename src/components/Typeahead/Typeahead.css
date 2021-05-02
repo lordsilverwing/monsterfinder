@@ -1,5 +1,6 @@
 .typeahead {
     position: relative;
+
   }
   
 .typeahead .list {
@@ -10,10 +11,15 @@
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     top: calc(100% - 1em);
-    width: 100%;
+    width: 75%;
+    left: 13%;
+    border-style: solid;
+    
+    border-color: black;
   }
 
   .typeahead .list .item:hover,
   .typeahead .list .item.active {
-      background-color: red;
+      background-color: maroon;
+      color: white;
   }

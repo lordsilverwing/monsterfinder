@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {Redirect} from "react-router-dom"
 import MonsterInput from "../../components/MonsterInput/MonsterInput"
 import RandomMonster from "../../components/RandomMonster/RandomMonster"
+import { Divider, Grid, Segment } from 'semantic-ui-react'
 
 export default function MonsterSearch(){
 
@@ -34,11 +35,19 @@ export default function MonsterSearch(){
 
       if (monsterData.index) return <Redirect to={`/${monsterData.index}`}/>
     return(
-        <>
-        <div>Find a Monster</div>
-        <MonsterInput monsterData={monsterData.results} onChange={onChange}/>
-        <RandomMonster handleRandom={handleRandom} />
-        
-        </>
+      <Segment>
+        <Grid columns={2} relaxed='very'>
+          <Grid.Column>
+            <h3>Find a Monster</h3>
+            <MonsterInput monsterData={monsterData.results} onChange={onChange}/>
+          </Grid.Column>
+          <Grid.Column>
+            <h3>See Random </h3>
+            <RandomMonster handleRandom={handleRandom} />
+          </Grid.Column>
+        </Grid>
+        <Divider vertical>Or</Divider>
+      </Segment>
+
     )
 }

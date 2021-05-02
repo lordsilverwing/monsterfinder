@@ -13,6 +13,7 @@ export default function MonsterInput(props){
             placeholder={"Find Monster..."}
             getSuggestions={() => props.monsterData.map(m => ({ id: m.index, text: m.name}))}
             performAction={props.onChange}
+            inputDelay = {500}
         />
         </>
     )

@@ -14,9 +14,6 @@ import * as favoriteApi from '../../utils/favoriteService'
 
 function App() {
 
-  
-
-
   const [user, setUser] = useState(userService.getUser()) // getUser decodes our JWT token, into a javascript object
   // this object corresponds to the jwt payload which is defined in the server signup or login function that looks like 
   // this  const token = createJWT(user); // where user was the document we created from mongo
@@ -65,7 +62,7 @@ function App() {
           </Route>
           {userService.getUser() ? 
             <> 
-            <Header handleLogout={handleLogout}/>
+            <Header handleLogout={handleLogout} user={user}/>
              <Switch>
                <Route exact path ="/profile">
                   <Profile user={user} favoriteApi={favoriteFun}/>
