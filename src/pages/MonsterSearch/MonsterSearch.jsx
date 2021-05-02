@@ -16,8 +16,7 @@ export default function MonsterSearch(){
     }
 
 
-      const handleRandom = (cr) => {
-        console.log(challengeRating)    
+      const handleRandom = (cr) => {   
         setChallengeRating(cr)
       }
     

@@ -1,0 +1,9 @@
+.ui.card#monsterCard{
+    width: 50%;
+    text-align:center;
+}
+
+#monsterLink{
+    float: right;
+    color: maroon;
+}
