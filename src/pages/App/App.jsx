@@ -30,7 +30,6 @@ function App() {
   async function addFavorite(monster){
     try {
       const data = await favoriteApi.create(user._id, monster)
-      console.log(data, ' response from addLike')
       setUser(u => ({...u, favoriteMonsters:data})) 
     } catch(err){
       console.log(err)
@@ -40,15 +39,12 @@ function App() {
   async function removeFavorite(favoriteId){
     try{  
       const data = await favoriteApi.removeFavorite(favoriteId);
-      console.log(data, ' response from removeFavorite')
        setUser(u => ({...u, favoriteMonsters:data})) 
     } catch(err){
       console.log(err)
     }
   }
   const favoriteFun = {addFavorite, removeFavorite}
-
-
 
   return (
     <div className="App">

@@ -23,3 +23,7 @@
       background-color: maroon;
       color: white;
   }
+
+  .typeahead{
+      padding-top: .75em;
+  }

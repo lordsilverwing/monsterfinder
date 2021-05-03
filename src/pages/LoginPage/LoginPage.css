@@ -1,0 +1,12 @@
+.ui.center.aligned.header{
+    color:maroon;
+}
+
+.ui.large.fluid.button{
+    background-color: maroon;
+    color:white;
+}
+.ui.stacked.segment,
+.ui.message{
+    background-color: #E4E1D7;
+}

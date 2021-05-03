@@ -7,6 +7,7 @@ export default function MonsterInput(props){
 
     return (
         <>
+        <div>Start typing what you desire</div>
         <Typeahead 
             fetchAllOnOpen={true}
             maxSuggestions={4}

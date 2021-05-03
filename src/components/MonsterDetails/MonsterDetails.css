@@ -1,6 +1,7 @@
 .ui.card{
     width:85%;
     text-align: center;
+    background-color: #E4E1D7;
 }
 
 #star{
@@ -18,4 +19,8 @@ dd{
 
 .ui.horizontal.divider{
     font-size: large;
+}
+
+.ui.centered.card{
+    background-color: #E4E1D7;
 }

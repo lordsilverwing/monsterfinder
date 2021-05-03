@@ -30,6 +30,9 @@
 a{
   color:maroon;
 }
+a:hover{
+  color:black;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -38,4 +41,12 @@ a{
   to {
     transform: rotate(360deg);
   }
+}
+
+.ui.very.relaxed.two.column.grid{
+  background-color: #E4E1D7;
+}
+.ui.vertical.animated.button{
+  background-color: maroon;
+  color:white;
 }

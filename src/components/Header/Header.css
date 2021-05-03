@@ -1,4 +1,10 @@
 .menu a {
-    color: maroon;
     font-size: x-large;
+}
+.ui.clearing.segment{
+    background-color: #ABA387;
+}
+
+.ui.massive.menu{
+    background-color: #E4E1D7;
 }
