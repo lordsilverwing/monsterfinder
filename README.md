@@ -35,7 +35,7 @@ View the
 
 ## Technologies Used
 
-### MERNStack Application and D&D 5th Edition API
+### MERNStack Application, React, Express, Javascript, HTML, CSS and D&D 5th Edition API
 
 ---
 
