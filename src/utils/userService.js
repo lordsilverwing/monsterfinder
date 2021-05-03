@@ -16,7 +16,7 @@ function signup(user) {
     throw new Error('Email already taken!');
   })
   // Parameter destructuring!
-  .then(({token}) => tokenService.setToken(token));
+  .then(({token}) => tokenService.setToken({token}));
   // Setting our token in localStorage in our browser
   // then we'll be able to use with every request!
   // The above could have been written as

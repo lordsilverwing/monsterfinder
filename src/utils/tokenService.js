@@ -5,9 +5,9 @@ function setToken(user) {
     } else {
       localStorage.removeItem('token');
     }
-    if (user && user.favoriteMonsters) {
-      setFavoriteMonsters(user.favoriteMonsters)
-    }
+     if (user && user.favoriteMonsters) {
+        setFavoriteMonsters(user.favoriteMonsters)
+     }
   }
   
   function getToken() {
