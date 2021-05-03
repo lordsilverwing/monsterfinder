@@ -11,7 +11,7 @@ async function create(req, res){
         const user = await User.findById(req.params.id);
         console.log(req)
         user.favoriteMonsters.push({monsterName: req.body.monster.name, monsterIndex: req.body.monster.index}); //mutating a document
-        await user.save()// save it
+        await user.save()
         console.log("added")
         res.status(201).json(user.favoriteMonsters)
     } catch(err){
@@ -25,9 +25,8 @@ async function deleteFavorite(req, res){
     try {
         
         const user = await User.findOne({'favoriteMonsters._id': req.params.id});
-        user.favoriteMonsters.remove(req.params.id) // mutating a document
-        // req.params.id is the like id 
-        await user.save() // after you mutate a document you must save
+        user.favoriteMonsters.remove(req.params.id)
+        await user.save()
         res.json(user.favoriteMonsters)
     } catch(err){
         res.json({error: err})
